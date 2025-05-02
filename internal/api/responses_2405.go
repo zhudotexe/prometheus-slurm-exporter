@@ -47,6 +47,8 @@ type NodesResp struct {
 		AllocCpus     *int32   `json:"alloc_cpus,omitempty"`
 		AllocIdleCpus *int32   `json:"alloc_idle_cpus,omitempty"`
 		Cpus          *int32   `json:"cpus,omitempty"`
+		Gres          *string  `json:"gres,omitempty"`
+		GresUsed      *string  `json:"gres_used,omitempty"`
 	} `json:"nodes"`
 }
 

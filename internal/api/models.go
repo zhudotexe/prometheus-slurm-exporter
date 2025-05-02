@@ -200,6 +200,8 @@ type NodeData struct {
 	Cpus          int32
 	GPUTotal      int32
 	GPUAllocated  int32
+	Gres          string
+	GresUsed      string
 }
 
 func NewNodesData() *NodesData {
@@ -238,6 +240,18 @@ func (n *NodeData) SetTres(tres *string) {
 func (n *NodeData) SetTresUsed(tresUsed *string) {
 	if tresUsed != nil {
 		n.TresUsed = *tresUsed
+	}
+}
+
+func (n *NodeData) SetGres(gres *string) {
+	if gres != nil {
+		n.Gres = *gres
+	}
+}
+
+func (n *NodeData) SetGresUsed(gresUsed *string) {
+	if gresUsed != nil {
+		n.GresUsed = *gresUsed
 	}
 }
 
@@ -456,6 +470,9 @@ func (d *NodesData) FromResponse(r NodesResp) error {
 		if err = nd.SetNodeGPUTotal(n.Tres); err != nil {
 			return err
 		}
+
+		nd.SetGres(n.Gres)
+		nd.SetGresUsed(n.GresUsed)
 
 		d.Nodes = append(d.Nodes, nd)
 	}

@@ -17,7 +17,7 @@ func TestParseNodeMetrics(t *testing.T) {
 		t.Fatalf("failed to parse nodes metrics: %v", err)
 	}
 	tt := []nodeMetrics{
-		{6, 4, 8, 9, 0, 9, "invalid|invalid"},
+		{6, 4, 8, 9, 0, 9, "invalid|invalid", 1, 2, 3},
 	}
 	for _, tc := range tt {
 		if data["hostname"].memAlloc != tc.memAlloc {
@@ -37,6 +37,15 @@ func TestParseNodeMetrics(t *testing.T) {
 		}
 		if data["hostname"].cpuTotal != tc.cpuTotal {
 			t.Fatalf("expected %v, got %v", tc.cpuTotal, data["hostname"].cpuTotal)
+		}
+		if data["hostname"].gpuAlloc != tc.gpuAlloc {
+			t.Fatalf("expected %v, got %v", tc.gpuAlloc, data["hostname"].gpuAlloc)
+		}
+		if data["hostname"].gpuIdle != tc.gpuIdle {
+			t.Fatalf("expected %v, got %v", tc.gpuIdle, data["hostname"].gpuIdle)
+		}
+		if data["hostname"].gpuTotal != tc.gpuTotal {
+			t.Fatalf("expected %v, got %v", tc.gpuTotal, data["hostname"].gpuTotal)
 		}
 	}
 }

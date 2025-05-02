@@ -1,10 +1,10 @@
 PROJECT_NAME = prometheus-slurm-exporter
 
-ifndef SLURM_VERSION
-$(error SLURM_VERSION environment variable is not set)
-endif
+#ifndef SLURM_VERSION
+#$(error SLURM_VERSION environment variable is not set)
+#endif
 
-slurm_version := ${SLURM_VERSION}
+slurm_version := 24.05
 
 # If SLURM_VERSION is "all", print an error message for the default build target
 build:
