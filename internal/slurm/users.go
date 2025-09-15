@@ -128,7 +128,7 @@ func ParseUsersMetrics(jobsData *api.JobsData) (map[string]*userJobMetrics, erro
 }
 
 func ParseGPUsFromTresAlloc(tresAlloc string) uint64 {
-	gpuPattern := regexp.MustCompile(`gpu:(\d+)`)
+	gpuPattern := regexp.MustCompile(`gpu=(\d+)`)
 	gpusMatch := gpuPattern.FindSubmatch([]byte(tresAlloc))
 	if gpusMatch == nil {
 		return 0
