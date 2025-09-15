@@ -493,6 +493,7 @@ type JobData struct {
 	UserName   string
 	JobState   types.JobState
 	Cpus       int32
+	TresAlloc  string
 	Partition  string
 	Dependency string
 }
@@ -599,6 +600,14 @@ func (j *JobData) SetJobCPUs(jobcpus *int32) error {
 	return nil
 }
 
+func (j *JobData) SetJobTresAlloc(tresAlloc *string) error {
+	if tresAlloc == nil {
+		j.TresAlloc = ""
+	}
+	j.TresAlloc = *tresAlloc
+	return nil
+}
+
 func (d *JobsData) FromResponse(r JobsResp) error {
 	var err error
 	for _, j := range r.Jobs {
@@ -619,6 +628,9 @@ func (d *JobsData) FromResponse(r JobsResp) error {
 			return err
 		}
 		if err = jd.SetJobCPUs(j.JobResources.Cpus); err != nil {
+			return err
+		}
+		if err = jd.SetJobTresAlloc(j.TresAlloc); err != nil {
 			return err
 		}
 		d.Jobs = append(d.Jobs, jd)

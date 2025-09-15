@@ -28,6 +28,7 @@ type JobsResp struct {
 		Partition    *string  `json:"partition"`
 		JobState     []string `json:"job_state"`
 		Dependency   *string  `json:"dependency"`
+		TresAlloc    *string  `json:"tres_alloc_str,omitempty"`
 		JobResources struct {
 			Cpus *int32 `json:"cpus"`
 		} `json:"job_resources"`
