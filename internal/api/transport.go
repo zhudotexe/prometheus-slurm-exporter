@@ -130,6 +130,7 @@ func newSlurmUnixRestRequest(ctx context.Context, k types.Key) (*slurmRestReques
 				DialContext: func(ctx context.Context, _, _ string) (net.Conn, error) {
 					return net.Dial("unix", socketPath)
 				},
+				DisableKeepAlives: true,
 			},
 		},
 	}, nil
