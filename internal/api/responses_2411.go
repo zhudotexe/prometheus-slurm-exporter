@@ -1,8 +1,8 @@
-//go:build 2405
+//go:build 2411
 
 package api
 
-var apiVersion = "24.05"
+var apiVersion = "24.11"
 
 type DiagResp struct {
 	Statistics struct {
@@ -28,7 +28,6 @@ type JobsResp struct {
 		Partition    *string  `json:"partition"`
 		JobState     []string `json:"job_state"`
 		Dependency   *string  `json:"dependency"`
-		TresAlloc    *string  `json:"tres_alloc_str,omitempty"`
 		JobResources struct {
 			Cpus *int32 `json:"cpus"`
 		} `json:"job_resources"`
@@ -48,8 +47,6 @@ type NodesResp struct {
 		AllocCpus     *int32   `json:"alloc_cpus,omitempty"`
 		AllocIdleCpus *int32   `json:"alloc_idle_cpus,omitempty"`
 		Cpus          *int32   `json:"cpus,omitempty"`
-		Gres          *string  `json:"gres,omitempty"`
-		GresUsed      *string  `json:"gres_used,omitempty"`
 	} `json:"nodes"`
 }
 
@@ -68,9 +65,9 @@ type PartitionsResp struct {
 type SharesResp struct {
 	Shares struct {
 		Shares []struct {
-			Name           *string `json:"name"`
-			EffectiveUsage struct {
-				Number *float64 `json:"number"`
+			Name           *string  `json:"name"`
+			EffectiveUsage *struct {
+				Number   *float64 `json:"number"`
 			} `json:"effective_usage"`
 		} `json:"shares"`
 	} `json:"shares"`
