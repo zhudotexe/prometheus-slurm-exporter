@@ -69,9 +69,7 @@ type SharesResp struct {
 	Shares struct {
 		Shares []struct {
 			Name           *string `json:"name"`
-			EffectiveUsage struct {
-				Number *float64 `json:"number"`
-			} `json:"effective_usage"`
+			EffectiveUsage *float64 `json:"effective_usage"`
 		} `json:"shares"`
 	} `json:"shares"`
 }
