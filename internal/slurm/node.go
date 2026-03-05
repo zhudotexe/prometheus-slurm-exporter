@@ -133,7 +133,7 @@ func ParseNodeMetrics(nodesData *api.NodesData) (map[string]*nodeMetrics, error)
 		nodeMap[nodeName].cpuTotal = uint64(n.Cpus)
 
 		// gpu
-		gpuPattern := regexp.MustCompile(`gpu:(\d+)`)
+		gpuPattern := regexp.MustCompile(`gpu:(?:[^:]+:)*?(\d+)(\W|$)`)
 		totalGpusMatch := gpuPattern.FindSubmatch([]byte(n.Gres))
 		usedGpusMatch := gpuPattern.FindSubmatch([]byte(n.GresUsed))
 		if totalGpusMatch == nil || usedGpusMatch == nil {
